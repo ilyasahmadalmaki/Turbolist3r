@@ -8,6 +8,7 @@
 # - check subdomain for text "From http://PTRarchive.com: " and remove it (otherwise it ends up in the output and can impede automated analysis with other tools)
 # - added functionality to query found subdomains, record answer, and catagorize as A or CNAME record. Speeds up subdomain takeover analysis as CNAME records and the services they point to are collected and displayed
 #
+# Diterjemahkan kedalam bahasa indonesia oleh ilyas ahmad almaki "github.com/ilyasahmadalmaki"
 # TODO - merge Sublist3r dns requests with dnslib to avoid duplication of dns libraries
 #
 
