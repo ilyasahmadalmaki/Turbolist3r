@@ -1,3 +1,8 @@
+##Penerjemah bahasa indonesia 
+IlYas Ahmad almaki / Mobkey D_Oon
+
+##Tools ini juga sangat cocok buat para GRETONGER INDONESIA / PEMBURU INTERNET GRATIS :)
+
 ## Turbolist3r
 
 Turbolist3r is a fork of the [sublist3r](https://github.com/aboul3la/sublist3r) subdomain discovery tool. In addition to the original OSINT capabilties of sublist3r, turbolist3r automates some analysis of the results, with a focus on subdomain takeover.
@@ -12,121 +17,108 @@ Please do not use for illegal purposes.
 
 ![Screenshot 2](https://cp270.files.wordpress.com/2018/01/turbo_analysis.png)
 
-## Usage
+## Cara penggunaan dan keterangan
 
-Short Form    | Long Form     | Description
+Singkatan     |  Kepanjangan  | Deskripsi
 ------------- | ------------- |-------------
--d            | --domain      | Domain name to enumerate subdomains of
--b            | --bruteforce  | Enable the subbrute bruteforce module
--p            | --ports       | Scan the found subdomains against specific tcp ports
--v            | --verbose     | Enable the verbose mode and display results in realtime
--t            | --threads     | Number of threads to use for subbrute bruteforce
--e            | --engines     | Specify a comma-separated list of search engines
--o            | --output      | Save discovered domain names to specified text file
--h            | --help        | show the help message and exit
--a            | --analyze     | Do reverse DNS analysis and output results
-(none)        | --saverdns    | Save reverse DNS analysis to specified file
-(none)        | --inputfile   | Read domains from specified file, and use them for analysis
-(none)        | --debug       | Print debug information during the analysis module (-a). Prints mostly raw DNS data, familarity with the DIG Linux DNS utility and it's output is helpful to interpret the debug output
--r            | --resolvers   | File with DNS servers to populate as resolvers. File must have only one server IP address per line and only IP addresses are accepted
+-d            | --domain      | Nama domain untuk menghitung subdomain
+-b            | --bruteforce  | Aktifkan modul bruteforce subbrute
+-p            | --ports       | Pindai subdomain yang ditemukan terhadap port tcp tertentu
+-v            | --verbose     | Aktifkan mode verbose dan tampilkan hasil secara realtime
+-t            | --threads     | Jumlah waktu yang digunakan untuk subbrute bruteforce
+-e            | --engines     | Tentukan daftar mesin pencari dan pisahkan dengan koma
+-o            | --output      | Simpan semua domain yang ditemukan ke dalam file teks yang ditentukan
+-h            | --help        | untuk melihat penggunaan dan module
+-a            | --analyze     | Mengulamg DNS analysis dan hasil output
+(none)        | --saverdns    | Simpan reverse DNS analysis kedalam file yang ditentukan
+(none)        | --inputfile   | Baca domain dari file yang ditentukan, dan gunakan untuk analisis
+(none)        | --debug       | Cetak informasi debug selama modul analisis (-a). Mencetak sebagian besar data DNS mentah, dibarengi dengan utilitas DIG Linux DNS dan outputnya sangat membantu untuk menafsirkan output debug
+-r            | --resolvers   | File dengan server DNS untuk diisi sebagai resolvers. File harus hanya memiliki satu alamat IP server per baris dan hanya alamat IP yang diterima
 
-### Examples
+### Contoh :
 
-* To list all the basic options and switches use -h switch:
+###keterangan : jika anda menggunakan termux,saya sarankan menggunakan python2
+
+* Untuk melihat semua opsi,gunakan input -h :
 
 ```python turbolist3r.py -h```
 
-* To enumerate subdomains of a specific domain, perform advanced analysis, and save the analysis to a file:
+* Untuk menghitung subdomain dari domain tertentu, melakukan analisis lanjutan, dan menyimpan analisis ke file:
 
-``python turbolist3r.py -d example.com -a --saverdns analysis_file.txt``
+``python turbolist3r.py -d contohsitus.com -a --saverdns analysis_file.txt``
 
-* Read subdomains from a file and perform advanced analysis on them:
+* Baca subdomain dari file dan lakukan analisis lanjutan pada mereka:
 
-``python turbolist3r.py -d example.com -a --inputfile subdomains.txt``
+``python turbolist3r.py -d contohsitus.com -a --inputfile subdomains.txt``
 
-* Using -r to populate DNS resolvers from a file (resolvers used with -a analysis module):
+* Gunakan -r untuk mengisi resolver DNS dari file (resolver digunakan dengan -a modul analisis):
 
 ``python turbolist3r.py -d example.com -a --inputfile subdomains.txt -r dns_servers.txt``
 
-* To enumerate subdomains of specific domain:
+* Untuk menghitung subdomain dari domain tertentu:
 
 ``python turbolist3r.py -d example.com``
 
-* To enumerate subdomains of specific domain and save discovered subdomains to a file:
+* Untuk menghitung subdomain dari domain tertentu dan menyimpan subdomain yang ditemukan ke dalam file:
 
-``python turbolist3r.py -d example.com -o example_hosts.txt``
+``python turbolist3r.py -d example.com -o hasil.txt``
 
-* To enumerate subdomains of specific domain and show the results in realtime:
+* Untuk menghitung subdomain dari domain tertentu dan menunjukkan hasil real-time:
 
 ``python turbolist3r.py -v -d example.com``
 
-* To enumerate subdomains and enable the bruteforce module:
+* Untuk menghitung subdomain dan mengaktifkan modul bruteforce:
 
 ``python turbolist3r.py -b -d example.com``
 
-* To enumerate subdomains and use specific engines such Google, Yahoo and Virustotal engines
+* Untuk menghitung subdomain dan menggunakan mesin penelusuran khusus seperti Google, Bing, Yahoo dll.
 
 ``python turbolist3r.py -e google,yahoo,virustotal -d example.com``
 
 
-## Dependencies:
+## Definisi
 
-Note that turbolist3r has not been tested on Windows.
+Perhatikan bahwa turbolist3r belum diuji pada Windows. 
+Turbolist3r tergantung pada modul `` dnslib`, `request`,` dnspython`, dan `argparse` python.
 
-Turbolist3r depends on the `dnslib`, `requests`, `dnspython`, and `argparse` python modules.
-
-#### dnslib Module
-
-The dnslib module can be downloaded from [https://bitbucket.org/paulc/dnslib/](https://bitbucket.org/paulc/dnslib/) or installed on many systems using:
+#### Modul dnslib 
+Modul dnslib dapat diunduh dari [https://bitbucket.org/paulc/dnslib/[(https://bitbucket.org/paulc/dnslib/) 
+atau diinstal  menggunakan python-pip
 
 ``pip install dnslib``
 
+#### Modul request
 
-#### requests Module
+-install untuk android/termux:
+```pip2 install requests```
 
-- Install for Ubuntu/Debian:
-```
-sudo apt-get install python-requests
-```
+- Install untuk Ubuntu/Debian:
+```sudo apt-get install python-requests```
 
-- Install for Centos/Redhat:
-```
-sudo yum install python-requests
-```
+- Install untuk Centos/Redhat:
+```sudo yum install python-requests```
 
 - Install using pip on Linux:
-```
-sudo pip install requests
-```
+```sudo pip install requests```
 
-#### dnspython Module (http://www.dnspython.org/)
+#### Modul dnspython  (http://www.dnspython.org/)
 
-- Install for Ubuntu/Debian:
-```
-sudo apt-get install python-dnspython
-```
+- Install untuk Ubuntu/Debian:
+```sudo apt-get install python-dnspython```
 
 - Install using pip:
-```
-sudo pip install dnspython
-```
+```sudo pip install dnspython```
 
-#### argparse Module
+#### Modul argparse 
 
-- Install for Ubuntu/Debian:
-```
-sudo apt-get install python-argparse
-```
+- Install untuk Ubuntu/Debian:
+```sudo apt-get install python-argparse```
 
-- Install for Centos/Redhat:
-```
-sudo yum install python-argparse
-``` 
+- Install untuk Centos/Redhat:
+```sudo yum install python-argparse``` 
 
-- Install using pip:
-```
-sudo pip install argparse
-```
+- Install menggunakan pip:
+```sudo pip install argparse```
 
 ## License
 
