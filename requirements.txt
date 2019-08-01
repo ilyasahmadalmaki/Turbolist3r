@@ -2,3 +2,4 @@ dnslib
 argparse
 dnspython
 requests
+mechanize
