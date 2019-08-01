@@ -1,5 +1,5 @@
 ##Penerjemah bahasa indonesia 
-IlYas Ahmad almaki / Mobkey D_Oon
+IlYas Ahmad almaki / Monkey D_Oon
 
 ##Tools ini juga sangat cocok buat para GRETONGER INDONESIA / PEMBURU INTERNET GRATIS :)
 
