@@ -133,7 +133,7 @@ def parse_args():
 	parser.add_argument('-d', '--domain', help="Domain name to enumerate it's subdomains", required=True)
 	parser.add_argument('-b', '--bruteforce', help='Aktifkan modul bruteforce subbrute', nargs='?', default=False)
 	parser.add_argument('-p', '--ports', help='Pindai subdomain yang ditemukan terhadap port tcp yang ditentukan')
-	parser.add_argument('-v', '--verbose', help='Aktifkan Verbosity dan tampilkan hasil realtime, nargs='?',
+	parser.add_argument('-v', '--verbose', help='Aktifkan Verbosity dan tampilkan hasil realtime', nargs='?',
 						default=False)
 	parser.add_argument('-t', '--threads', help='Jumlah threads yang digunakan untuk subbrute bruteforce', type=int,
 						default=30)
@@ -1241,5 +1241,3 @@ if __name__ == "__main__":
 		# save the analysis to a file. Merge the arrays into one list for easier reading
 		write_file(analysisfile, ahosts + ["\n"] + cnames)
 		print(B + "Menyimpan reverse DNS analysis ke " + analysisfile + W)
-
-
