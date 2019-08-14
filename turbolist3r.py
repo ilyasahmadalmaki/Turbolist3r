@@ -99,6 +99,7 @@ def banner():
 
           # Based on Sublist3r by Ahmed Aboul-Ela - @aboul3la
           # Forked by Carl Pearson - github.com/fleetcaptain
+          # Penerjemah ilyas - github.com/ilyasahmadalmaki
 	""" % (R, W, Y))
 
 
@@ -119,7 +120,7 @@ def is_ip(s):
 
 def parser_error(errmsg):
 	banner()
-	print("Usage: python " + sys.argv[0] + " [Options] use -h for help")
+	print("cara penggunaan: python " + sys.argv[0] + " [Opsinya] type -h untuk bantuan")
 	print(R + "Error: " + errmsg + W)
 	sys.exit()
 
@@ -130,25 +131,25 @@ def parse_args():
 	parser.error = parser_error
 	parser._optionals.title = "OPTIONS"
 	parser.add_argument('-d', '--domain', help="Domain name to enumerate it's subdomains", required=True)
-	parser.add_argument('-b', '--bruteforce', help='Enable the subbrute bruteforce module', nargs='?', default=False)
-	parser.add_argument('-p', '--ports', help='Scan the found subdomains against specified tcp ports')
-	parser.add_argument('-v', '--verbose', help='Enable Verbosity and display results in realtime', nargs='?',
+	parser.add_argument('-b', '--bruteforce', help='Aktifkan modul bruteforce subbrute', nargs='?', default=False)
+	parser.add_argument('-p', '--ports', help='Pindai subdomain yang ditemukan terhadap port tcp yang ditentukan')
+	parser.add_argument('-v', '--verbose', help='Aktifkan Verbosity dan tampilkan hasil realtime, nargs='?',
 						default=False)
-	parser.add_argument('-t', '--threads', help='Number of threads to use for subbrute bruteforce', type=int,
+	parser.add_argument('-t', '--threads', help='Jumlah threads yang digunakan untuk subbrute bruteforce', type=int,
 						default=30)
-	parser.add_argument('-e', '--engines', help='Specify a comma-separated list of search engines')
-	parser.add_argument('-o', '--output', help='Save just domain names to specified text file')
-	parser.add_argument('-a', '--analyze', default=False, help='Do reverse DNS analysis and output results', action="store_true")
-	parser.add_argument('--saverdns', help='Save reverse DNS analysis to specified file')
-	parser.add_argument('--inputfile', help='Read domains from specified file (perhaps from other tool) and use instead of searching engines. Use with -a to analyze domains')
-	parser.add_argument('--debug', default=False, help='Enable technical debug output', action="store_true")
-	parser.add_argument('-r', '--resolvers',  help='File with DNS servers to populate as resolvers, one per line')
+	parser.add_argument('-e', '--engines', help='Tentukan daftar mesin pencari yang dipisahkan koma')
+	parser.add_argument('-o', '--output', help=' hanya simpan nama domain ke file teks yang ditentukan')
+	parser.add_argument('-a', '--analyze', default=False, help='Lakukan analisis balik DNS dan hasil keluaran', action="store_true")
+	parser.add_argument('--saverdns', help='Simpan analisis DNS terbalik ke file yang ditentukan')
+	parser.add_argument('--inputfile', help='Baca domain dari file yang ditentukan (mungkin dari alat lain) dan gunakan alih-alih mesin pencari. Gunakan dengan -a untuk menganalisis domain')
+	parser.add_argument('--debug', default=False, help='Aktifkan output debug teknis', action="store_true")
+	parser.add_argument('-r', '--resolvers',  help='File dengan server DNS untuk diisi sebagai resolvers, satu per baris')
 	return parser.parse_args()
 
 
 def write_file(filename, subdomains):
 	# saving subdomains results to output file
-	print("%s[-] Saving results to file: %s%s%s%s" % (Y, W, R, filename, W))
+	print("%s[-] simpan hasil ke dalam file: %s%s%s%s" % (Y, W, R, filename, W))
 	with open(str(filename), 'wt') as f:
 		for subdomain in subdomains:
 			f.write(subdomain + "\r\n")
@@ -206,7 +207,7 @@ class enumratorBase(object):
 
 	def print_banner(self):
 		""" subclass can override this if they want a fancy banner :)"""
-		self.print_(G + "[-] Searching now in %s.." % (self.engine_name) + W)
+		self.print_(G + "[-] sedang mencari di %s.." % (self.engine_name) + W)
 		return
 
 	def send_req(self, query, page_no=1):
@@ -968,10 +969,10 @@ def main(domain, threads, savefile, ports, silent, verbose, enable_bruteforce, e
 	parsed_domain = urlparse.urlparse(domain)
 
 	if not silent:
-		print(B + "[-] Enumerating subdomains now for %s" % parsed_domain.netloc + W)
+		print(B + "[-] Menghitung subdomain untuk %s" % parsed_domain.netloc + W)
 
 	if verbose and not silent:
-		print(Y + "[-] verbosity is enabled, will show the subdomains results in realtime" + W)
+		print(Y + "[-] verbosity diaktifkan, akan menampilkan hasil subdomain di waktu realtime" + W)
 
 	supported_engines = {'baidu': BaiduEnum,
 						 'yahoo': YahooEnum,
@@ -1076,7 +1077,7 @@ def lookup(guess, name_server):
 		exit()
 	except:
 		# probably socket timed out
-		print(R + "ERROR - possible socket timeout when trying " + guess + ' at server ' + name_server + W)
+		print(R + "ERROR - kemungkinan soket kehabisan waktu saat mencoba " + guess + ' at server ' + name_server + W)
 		pass
 	if response:
 		if debug:
@@ -1128,7 +1129,7 @@ def lookup(guess, name_server):
 					record_type = 'A'
 					record_value = str(r.rdata)
 		else:
-			print("ERROR - returned stats " + rcode + " when trying " + guess + ' at server ' + name_server)
+			print("ERROR - statistik yang dikembalikan " + rcode + "saat mencoba " + guess + ' at server ' + name_server)
 	return record_type, record_value
 
 
@@ -1166,7 +1167,7 @@ if __name__ == "__main__":
 			f = open(server_file, 'r')
 			servers = f.readlines()
 		except Exception as e:
-			print("Error opening resolver file " + server_file)
+			print("Error ketika  file resolvers" + server_file)
 			print("Exception trace: " + str(e))
 			raise SystemExit
 		# Do some sanity checking on user supplied resolvers
@@ -1181,7 +1182,7 @@ if __name__ == "__main__":
 		resolvers = ['8.8.8.8', '8.8.4.4', '9.9.9.9', '1.1.1.1', '1.0.0.1']	
 		
 	if (inputfile != None):
-		print(B + "[-] Reading subdomains from " + inputfile + W)
+		print(B + "[-] lihat subdomains dari " + inputfile + W)
 		f = open(inputfile, 'r')
 		res = f.readlines()
 		f.close()
@@ -1191,14 +1192,14 @@ if __name__ == "__main__":
 	# Code added here
 	if (analyze):
 		# res is the list of subdomains e.g. www.example.com, mail.example.com, etc
-		print(B + "[-] Using DNS resolvers:" + W)
+		print(B + "[-] Menggunakan DNS resolvers:" + W)
 		for r in resolvers:
 			print(B + r + W)
 		server = 0
 		count = 0
 		total = str(len(res))
 		print("")
-		print(B + "[-] Beginning analysis of " + total + " subdomains..." + W)
+		print(B + "[-] analisis asal" + total + " subdomains..." + W)
 		for subdomain in res:
 			try:
 				name = subdomain.replace('\n', '').replace('\r', '')
@@ -1239,4 +1240,6 @@ if __name__ == "__main__":
 	if (analysisfile!=None):
 		# save the analysis to a file. Merge the arrays into one list for easier reading
 		write_file(analysisfile, ahosts + ["\n"] + cnames)
-		print(B + "Saved reverse DNS analysis to " + analysisfile + W)
+		print(B + "Menyimpan reverse DNS analysis ke " + analysisfile + W)
+
+
